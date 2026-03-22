@@ -5,67 +5,67 @@
 # 2026-03-22
 # 2026-03-22
 
-#REPLACE THIS COMMENT - identify what each of these imports is for.
+#os import for running os operations and command - used for running adduser to add users to system.
+#re import for using the regular expression match function to find the # in the input file in order to skip the line if needed
+#sys import for accessing standard in for input of users being created by script.
 import os
 import re
 import sys
 
-#YOUR CODE SHOULD HAVE NONE OF THE INSTRUCTORS COMMENTS REMAINING WHEN YOU ARE FINISHED
-#PLEASE REPLACE INSTRUCTOR "PROMPTS" WITH COMMENTS OF YOUR OWN
-
 def main():
     for line in sys.stdin:
 
-        #REPLACE THIS COMMENT - this "regular expression" is searching for the presence of a character - what is it and why?
-        #The important part is WHY it is looking for a particular characer - what is that character being used for?
+        # match variable is a boolean meant to check whether or not a "#" is present
+        # in the current line. used for later if statement logic.
         match = re.match("^#",line)
 
-        #REPLACE THIS COMMENT - why is the code doing this?
+        # splitting line input into individual fields for use in system command to
+        # create a user.
         fields = line.strip().split(':')
 
-        #REPLACE THESE COMMENTS with a single comment describing the logic of the IF 
-        #what would an appropriate comment be for describing what this IF statement is checking for?
-        #what happens if the IF statement evaluates to true?
-        #how does this IF statement rely on what happened in the prior two lines of code? The match and fields lines.
-        #the code clearly shows that the variables match and the length of fields is being checked for being != 5  so why is it doing that?
+        # conditional to check if the current line has a # and/or if the line has 5 fields of input. if either are true, the program skips the current line of input and moves on to the next. # check is to see if an input line has been indicated to be skipped by the input creator, and the 5 fields of input check is to ensure that the proper number of fields is being passed for user creation.
         if match or len(fields) != 5:
             continue
 
-        #REPLACE THIS COMMENT - what is the purpose of the next three lines. How does it relate to what is stored in the passwd file?
+        # Splitting the input from fields 1 and 2 into username and password, to prep for passage into adduser command.
         username = fields[0]
         password = fields[1]
+        
+        # Passing fields 3 and 4 as one input for first and last name passage into adduser.
         gecos = "%s %s,,," % (fields[3],fields[2])
 
-        #REPLACE THIS COMMENT - why is this split being done?
+        # Passing field 5 into a split function in case of a user being added to several groups.
         groups = fields[4].split(',')
 
-        #REPLACE THIS COMMENT - what is the point of this print statement?
+        # Printing for good visibility when running the script to see which user is being worked on at the current point in time - good for debugging purposes.
         print("==> Creating account for %s..." % (username))
-        #REPLACE THIS COMMENT - what is this line doing?  What will the variable "cmd" contain.
+        
+        # Creating command that will be used to create current user with passed fields. 
         cmd = "/usr/sbin/adduser --disabled-password --gecos '%s' %s" % (gecos,username)
 
-        #REMOVE THIS COMMENT AFTER YOU UNDERSTAND WHAT TO DO - these statements are currently "commented out" as talked about in class
-        #The first time you run the code...what should you do here?  If uncommented - what will the os.system(cmd) statemetn attempt to do?
-        #print(cmd)
-        #os.system(cmd)
+        # Printing current command being run, which is the command to run adduser with the current user fields, good for debugging visibility.
+        print(cmd)
+        # runnning command currently in variable cmd, which is the adduser command used to add the current user's fields.
+        os.system(cmd)
 
-        #REPLACE THIS COMMENT - what is the point of this print statement?
+        # Printing for good visibility to indicate that the current user is at the part of the process where they are assigned a password, useful in debugging. 
         print("==> Setting the password for %s..." % (username))
-        #REPLACE THIS COMMENT - what is this line doing?  What will the variable "cmd" contain. You'll need to lookup what these linux commands do.
+    
+        # Creating command to add user password to passwd file in /usr/bin, ensuring that the correct password is associated with the correct username.
         cmd = "/bin/echo -ne '%s\n%s' | /usr/bin/sudo /usr/bin/passwd %s" % (password,password,username)
 
-        #REMOVE THIS COMMENT AFTER YOU UNDERSTAND WHAT TO DO - these statements are currently "commented out" as talked about in class
-        #The first time you run the code...what should you do here?  If uncommented - what will the os.system(cmd) statemetn attempt to do?
-        #print(cmd)
-        #os.system(cmd)
+        # Printing current command being run for debugging visibility.
+        print(cmd)
 
+        # Running the current command, which is the command to echo the password associated with the current user into the passwd file.
+        os.system(cmd)
         for group in groups:
-            #REPLACE THIS COMMENT with one that answers "What is this IF statement looking for and why? If group !='-' what happens?"
+            # conditional to check if groups field is filled in with a "-". if not, the groups will be properly assigned to the user. if it is, the groups command will be skipped.
             if group != '-':
                 print("==> Assigning %s to the %s group..." % (username,group))
                 cmd = "/usr/sbin/adduser %s %s" % (username,group)
-                #print(cmd)
-                #os.system(cmd)
+                print(cmd)
+                os.system(cmd)
 
 if __name__ == '__main__':
     main()
