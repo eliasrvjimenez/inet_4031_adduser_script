@@ -5,7 +5,7 @@
 # 2026-03-22
 # 2026-03-22
 
-#os import for running os operations and command - used for running adduser to add users to system.
+#os import for running os operations and command - i.e. used for running adduser to add users to system.
 #re import for using the regular expression match function to find the # in the input file in order to skip the line if needed
 #sys import for accessing standard in for input of users being created by script.
 import os
