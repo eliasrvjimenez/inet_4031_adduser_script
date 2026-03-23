@@ -20,16 +20,6 @@ If the program is passed in the correct fields, it should generate the users pas
 
 ## Program user operation - Running the program
 
-### Granting proper permissions to run the program.
-In order to run the program, ensure that your user has the correct permissions to run the file if running a dry-run, which can be done with the following:
-
-```bash
-$ chmod u+x create-users.py
-```
-
-This command will make the program executable. The program is set up to run using python 3, so ensure a version is installed on your system before running the program. 
-
-
 ### Input File Formatting
 
 This script is meant to be used in tandem with `create-users.input`, the formatting for this file is as follows.
@@ -66,11 +56,6 @@ user03:pass03:Last03:First03:-
 ### Running the Program
 Once your create-users.input is updated to generate the correct users, run:
 ```bash
-$ ./create-users.py < create-users.input
-```
-
-If you have permission to use `sudo` and are not running a dry-run, run:
-```bash
 $ sudo ./create-users.py < create-users.input
 ```
 
@@ -86,5 +71,3 @@ To check user groups:
 ```bash
 $ grep <name of user> /etc/group
 ```
-
-### Running in Dry-Run Mode
