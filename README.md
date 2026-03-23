@@ -58,6 +58,11 @@ user03:pass03:Last03:First03:-
 
 **WARNING:** users in either `create-users.input` and/or users passed as arguments to `create-users.py` will not be generated and will be skipped. if running outside of a dry run, the script will not notify you that a user has been skipped.
 
+***Tip:*** A line in the `create-users.input` can be skipped if you add a `#` into the line, ideally to the front for legibility. it would look like this:
+```txt
+#user01:pass01:Last01:First01:group01
+```
+
 ### Running the Program
 Once your create-users.input is updated to generate the correct users, run:
 ```bash
