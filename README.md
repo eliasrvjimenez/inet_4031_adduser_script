@@ -46,7 +46,7 @@ user02:pass02:Last02:First02:group01,group02
 user03:pass03:Last03:First03:-
 ```
 
-**WARNING:** users in either `create-users.input` and/or users passed as arguments to `create-users.py` will not be generated and will be skipped. if running outside of a dry run, the script will not notify you that a user has been skipped.
+**WARNING:** users in either `create-users.input` and/or users passed as arguments to `create-users.py` will not be generated and will be skipped. The script will not notify you that a user has been skipped.
 
 ***Tip:*** A line in the `create-users.input` can be skipped if you add a `#` into the line, ideally to the front for legibility. it would look like this:
 ```txt
