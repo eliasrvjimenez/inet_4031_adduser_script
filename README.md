@@ -5,7 +5,7 @@ Repository for holding adduser script for our Virtual Machine in INET4031 (Sprin
 The program `create-users.py` is a script that, when passed specified fields, will automattically generate users with:
 1. a username
 2. a password
-3. a first name and 
+3. a first name 
 4. a last name
 5. **PRE-EXISTING** groups passed in as field arguments
 
