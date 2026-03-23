@@ -7,11 +7,11 @@ The program `create-users.py` is a script that, when passed specified fields, wi
 2. a password
 3. a first name and 
 4. a last name
-5. **Preexisting** groups passed in as field arguments
+5. **PRE-EXISTING** groups passed in as field arguments
 
 **WARNING:** The program will not create groups for you, only users. if the group passed does not exist, the program will fail when trying to add the user to a nonexistant group.
 
-The program runs 3 os commandline statements. The script:
+The program runs 3 OS command line statements. The script:
 1. Runs the `adduser` command to add a given user, using fields 1, 3, and 4 from above.
 2. Runs a command that will `echo` a user's password from field 2 into the `/usr/bin/passwd` file, assigned to the correct associated user.
 3. Runs the `adduser` command again, this time to assign given user to the group or groups passed in from field 5.
