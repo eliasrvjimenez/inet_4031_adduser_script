@@ -9,7 +9,7 @@ The program `create-users.py` is a script that, when passed specified fields, wi
 4. a last name
 5. **Preexisting** groups passed in as field arguments
 
-**Warning** The program will not create groups for you, only users. if the group passed does not exist, the program will fail when trying to add the user to a nonexistant group.
+**WARNING:** The program will not create groups for you, only users. if the group passed does not exist, the program will fail when trying to add the user to a nonexistant group.
 
 The program runs 3 os commandline statements. The script:
 1. Runs the `adduser` command to add a given user, using fields 1, 3, and 4 from above.
@@ -56,7 +56,7 @@ user02:pass02:Last02:First02:group01,group02
 user03:pass03:Last03:First03:-
 ```
 
-**WARNING** users in either `create-users.input` and/or users passed as arguments to `create-users.py` will not be generated and will be skipped. if running outside of a dry run, the script will not notify you that a user has been skipped.
+**WARNING:** users in either `create-users.input` and/or users passed as arguments to `create-users.py` will not be generated and will be skipped. if running outside of a dry run, the script will not notify you that a user has been skipped.
 
 ### Running the Program
 Once your create-users.input is updated to generate the correct users, run:
